@@ -103,5 +103,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="simple_app_laravel-master" />
   </component>
 </module>

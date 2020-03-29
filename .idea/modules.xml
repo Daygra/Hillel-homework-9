@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/laravel_9.iml" filepath="$PROJECT_DIR$/.idea/laravel_9.iml" />
+      <module fileurl="file://D:/Downloads/simple_app_laravel-master/.idea/simple_app_laravel-master.iml" filepath="D:/Downloads/simple_app_laravel-master/.idea/simple_app_laravel-master.iml" />
     </modules>
   </component>
 </project>
