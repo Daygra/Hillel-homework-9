@@ -2,7 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6aedeb96-2aa8-4f2e-920c-5158aadac6ec" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ExpenseController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Expense.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/expenses/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/expenses/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/expenses/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/expenses/show.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/incomes/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/incomes/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/incomes/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/incomes/show.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +44,17 @@
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="test: schema" type="ebfa3cd1:MariaImplModel$Schema" />
       </path>
     </expand>
     <select />
@@ -143,6 +168,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="sortByType" value="true" />
   </component>
@@ -153,11 +179,17 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowFavorites.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="D:/Downloads/simple_app_laravel-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Programs\XAMPP\htdocs\DWA\laravel_9\resources\views" />
+      <recent name="D:\Programs\XAMPP\htdocs\DWA\laravel_9\app\Http\Controllers" />
+      <recent name="D:\Programs\XAMPP\htdocs\DWA\laravel_9\resources\views\incomes" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Programs\XAMPP\htdocs\DWA\laravel_9\resources\views" />
       <recent name="D:\Programs\XAMPP\htdocs\DWA\laravel_9\app\Models" />
     </key>
   </component>
@@ -196,7 +228,9 @@
       <updated>1585139640009</updated>
       <workItem from="1585139649860" duration="2039000" />
       <workItem from="1585141735320" duration="9138000" />
-      <workItem from="1585479388294" duration="3607000" />
+      <workItem from="1585479388294" duration="13112000" />
+      <workItem from="1585508001960" duration="3726000" />
+      <workItem from="1585582121370" duration="14521000" />
     </task>
     <servers />
   </component>
@@ -225,10 +259,14 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="275" y="27" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1585150331831" />
-    <state x="413" y="124" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1585480520479">
+    <state x="249" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1585594722697">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="413" y="124" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.738@0.0.1366.738" timestamp="1585480520479" />
+    <state x="249" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.738@0.0.1366.738" timestamp="1585594722697" />
+    <state x="413" y="124" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1585591433152">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="413" y="124" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.738@0.0.1366.738" timestamp="1585591433152" />
     <state width="247" height="195" key="DatabaseViewActions_Filter" timestamp="1585150339882">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -241,10 +279,14 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="196" height="539" key="HiddenNamespacesPopup/0.0.1366.738@0.0.1366.738" timestamp="1585150316207" />
-    <state x="517" y="288" key="NewPhpFileDialog" timestamp="1585483580075">
+    <state x="448" y="167" key="NewPhpClassDialog" timestamp="1585591398541">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="517" y="288" key="NewPhpFileDialog/0.0.1366.738@0.0.1366.738" timestamp="1585483580075" />
+    <state x="448" y="167" key="NewPhpClassDialog/0.0.1366.738@0.0.1366.738" timestamp="1585591398541" />
+    <state x="517" y="288" key="NewPhpFileDialog" timestamp="1585596606353">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="517" y="288" key="NewPhpFileDialog/0.0.1366.738@0.0.1366.738" timestamp="1585596606353" />
     <state x="184" y="11" key="SettingsEditor" timestamp="1585142859604">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -253,6 +295,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.738@0.0.1366.738" timestamp="1585140981648" />
+    <state x="413" y="174" key="com.intellij.database.dbimport.ImportUtil.MyDialog" timestamp="1585490802345">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="413" y="174" key="com.intellij.database.dbimport.ImportUtil.MyDialog/0.0.1366.738@0.0.1366.738" timestamp="1585490802345" />
     <state x="490" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585149641407">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

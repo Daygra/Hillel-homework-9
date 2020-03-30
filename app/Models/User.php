@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Modes\Income;
+use App\Models\Income;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -38,8 +38,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function incomes(): HasMany
+  /*  public function incomes(): HasMany
     {
         return $this->hasMany(Income::class);
-    }
+    }*/
 }

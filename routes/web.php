@@ -13,7 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::resource('income','IncomeController');
+Route::resource('expense','ExpenseController');
+Route::get('/',function()
+{
+    return view('index');
+});
+Route::get('/{pageNotFount}', function()
+{
+    return view('index');
+});
