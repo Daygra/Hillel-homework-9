@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Income extends Model
 {
-   /* protected $fillable = [
+    protected $fillable = [
         'value',
         'source',
         'comment'
-    ];*/
+    ];
    /* public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
