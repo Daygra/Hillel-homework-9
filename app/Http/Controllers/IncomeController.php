@@ -2,26 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Income;
+use App\Services\IncomeServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 class IncomeController extends Controller
 {
+    /**@var IncomeServiceInterface  */
+    private $incomeService;
+    public function __construct(IncomeServiceInterface $incomeService)
+    {
+        $this->incomeService=$incomeService;
+
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * //* @return \Illuminate\Http\Response
+     * //* @return Response
      */
     public function index()
     {
-      $incomes=Income::all();
-        return view('incomes.index',compact('incomes'));
-
+      $incomes=$this->incomeService->getAllIncomes();
+       return view('incomes.index',compact('incomes'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -32,52 +41,35 @@ class IncomeController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|Response|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-        try {
-            $this->validate($request,[
-                'value'=>'required',
-                'source'=>'required',
-                'comment'=>'required'
-            ]);
-            $income= new Income();
-
-            $income->value=$request->get('value');
-            $income->source=$request->get('source');
-            $income->comment=$request->get('comment');
-            $income->save();
-            return   redirect(route('income.index'));// return redirect()->route('income.index') в чем отличие?
-
-        }catch (\Exception $exception){
-          return  redirect(route('income.create'));
-        }
-
+        return $this->incomeService->addIncome($request)?redirect(route('income.index')):
+                                                         redirect(route('income.create'));
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|Response|\Illuminate\View\View
      */
     public function show($id)
     {
-        $income= Income::findOrFail($id);
+      $income=$this->incomeService->getIncomeById($id);
         return view('incomes.show',compact('income'));
-
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|Response|\Illuminate\View\View
      */
     public function edit($id)
     {
-        $income= Income::findOrFail($id);
+        $income=$this->incomeService->getIncomeById($id);
         return view('incomes.edit',compact('income'));
     }
 
@@ -86,35 +78,20 @@ class IncomeController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
-        try {
-            $this->validate($request,[
-                'value'=>'required',
-                'source'=>'required',
-                'comment'=>'required'
-            ]);
-            $income= Income::findOrFail($id);
+        return $this->incomeService->updateIncome($id,$request)?redirect(route('income.show',['income'=>$id])):
+                                                                redirect(route('income.edit',['income'=>$id]));
 
-            $income->value=$request->get('value');
-            $income->source=$request->get('source');
-            $income->comment=$request->get('comment');
-            $income->save();
-            return   redirect(route('income.show',['income'=>$id]));
-
-        }catch (\Exception $exception){
-
-           return  redirect(route('income.edit',['income'=>$id]));
-        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {

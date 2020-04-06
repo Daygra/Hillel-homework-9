@@ -14,8 +14,8 @@ class Income extends Model
         'source',
         'comment'
     ];
-   /* public function user(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }*/
+    }
 }

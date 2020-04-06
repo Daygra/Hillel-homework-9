@@ -38,8 +38,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-  /*  public function incomes(): HasMany
+   public function incomes(): HasMany
     {
         return $this->hasMany(Income::class);
-    }*/
+    }
 }

@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +14,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('income','IncomeController');
 Route::resource('expense','ExpenseController');
-Route::get('/',function()
+Route::get('/', ['as' => 'index', function () {
+    return view('index');
+}]);
+
+Route::get('/{pageNotFount}',function()
 {
     return view('index');
 });
-Route::get('/{pageNotFount}', function()
-{
-    return view('index');
-});
+

@@ -2,26 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Expense;
+use App\Services\ExpenseServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 class ExpenseController extends Controller
 {
+    private $expenseService;
+    public function __construct(ExpenseServiceInterface $expenseService)
+    {
+        $this->expenseService=$expenseService;
+
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * //* @return \Illuminate\Http\Response
+     * //* @return Response
      */
     public function index()
     {
-      $expenses=Expense::all();
+        $expenses=$this->expenseService->getAllExpenses();
         return view('expenses.index',compact('expenses'));
-
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -32,52 +40,35 @@ class ExpenseController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|Response|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-        try {
-            $this->validate($request,[
-                'value'=>'required',
-                'purpose'=>'required',
-                'comment'=>'required'
-            ]);
-            $expense= new Expense();
-
-            $expense->value=$request->get('value');
-            $expense->purpose=$request->get('purpose');
-            $expense->comment=$request->get('comment');
-            $expense->save();
-            return   redirect(route('expense.index'));// return redirect()->route('income.index') в чем отличие?
-
-        }catch (\Exception $exception){
-          return  redirect(route('expense.create'));
-        }
-
+        return $this->expenseService->addExpense($request)?redirect(route('expense.index')):
+            redirect(route('expense.create'));
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|Response|\Illuminate\View\View
      */
     public function show($id)
     {
-        $expense= Expense::findOrFail($id);
+        $expense=$this->expenseService->getExpenseById($id);
         return view('expenses.show',compact('expense'));
-
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|Response|\Illuminate\View\View
      */
     public function edit($id)
     {
-        $expense= Expense::findOrFail($id);
+        $expense=$this->expenseService->getExpenseById($id);
         return view('expenses.edit',compact('expense'));
     }
 
@@ -86,35 +77,20 @@ class ExpenseController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
     {
-        try {
-            $this->validate($request,[
-                'value'=>'required',
-                'purpose'=>'required',
-                'comment'=>'required'
-            ]);
-            $expense= Expense::findOrFail($id);
+        return $this->expenseService->updateExpense($id,$request)?redirect(route('expense.show',['expense'=>$id])):
+            redirect(route('expense.edit',['expense'=>$id]));
 
-            $expense->value=$request->get('value');
-            $expense->purpose=$request->get('purpose');
-            $expense->comment=$request->get('comment');
-            $expense->save();
-            return   redirect(route('expense.show',['expense'=>$id]));
-
-        }catch (\Exception $exception){
-
-            return  redirect(route('expense.edit',['expense'=>$id]));
-        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
