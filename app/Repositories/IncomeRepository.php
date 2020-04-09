@@ -5,25 +5,29 @@ namespace App\Repositories;
 
 
 use App\Models\Income;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class IncomeRepository implements IncomeRepositoryInterface
 {
 /** @var Income
 */
     private $model;
+
     public function __construct()
     {
-        $this->model=app()->make(Income::class);
+       // $this->model=app()->make(Income::class);
 
     }
     public function getAll(): ?Collection
     {
-        return $this->model::all();
+      return Auth::user()->incomes()->get();
     }
     public function findById($id): ?Income
     {
-    return $this->model->findOrFail($id);
+        return Auth::user()->incomes()->findOrFail($id);
+         //  return $this->model->findOrFail($id);
     }
     public function save(array $data,Income $income=NULL)
     {
@@ -31,9 +35,15 @@ class IncomeRepository implements IncomeRepositoryInterface
         $income->value=$data['value'];
         $income->source=$data['source'];
         $income->comment=$data['comment'];
-        $income->user_id=1;
+        $income->user_id=Auth::id();
         $income->save();
     }
+
+    public function delete($id)
+    {
+            $this->findById($id)->delete();
+    }
+
 
 
 }

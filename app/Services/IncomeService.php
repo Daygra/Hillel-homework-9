@@ -60,4 +60,10 @@ class IncomeService implements IncomeServiceInterface
         { return false;}
     }
 
+    public function deleteIncome($id)
+    {
+        $this->IncomeRepository->delete($id);
+    }
+
+
 }

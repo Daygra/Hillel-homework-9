@@ -13,4 +13,5 @@ interface IncomeServiceInterface
     public function getIncomeById(int $id):?Income;
     public function addIncome(Request $request):bool;
     public function updateIncome(int $id,Request $request):bool;
+    public function deleteIncome($id);
 }

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Income;
 use App\Services\IncomeServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class IncomeController extends Controller
 {
@@ -23,6 +25,8 @@ class IncomeController extends Controller
      */
     public function index()
     {
+      if (!$this->authControl())
+          return view('auth.login');
       $incomes=$this->incomeService->getAllIncomes();
        return view('incomes.index',compact('incomes'));
     }
@@ -34,6 +38,8 @@ class IncomeController extends Controller
      */
     public function create()
     {
+        if (!$this->authControl())
+            return view('auth.login');
         return view('incomes.create');
     }
 
@@ -57,6 +63,8 @@ class IncomeController extends Controller
      */
     public function show($id)
     {
+        if (!$this->authControl())
+            return view('auth.login');
       $income=$this->incomeService->getIncomeById($id);
         return view('incomes.show',compact('income'));
     }
@@ -69,6 +77,8 @@ class IncomeController extends Controller
      */
     public function edit($id)
     {
+        if (!$this->authControl())
+            return view('auth.login');
         $income=$this->incomeService->getIncomeById($id);
         return view('incomes.edit',compact('income'));
     }
@@ -81,7 +91,10 @@ class IncomeController extends Controller
      * @return Response
      */
     public function update(Request $request, $id)
+
     {
+        if (!$this->authControl())
+            return view('auth.login');
         return $this->incomeService->updateIncome($id,$request)?redirect(route('income.show',['income'=>$id])):
                                                                 redirect(route('income.edit',['income'=>$id]));
 
@@ -90,11 +103,22 @@ class IncomeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        //
+        if (!$this->authControl())
+            return view('auth.login');
+       $this->incomeService->deleteIncome($id);
+        return redirect()->route('income.index');
+    }
+    private function authControl()
+    {
+        if (Auth::id()===NULL)
+            return false;
+        return true;
+
     }
 }

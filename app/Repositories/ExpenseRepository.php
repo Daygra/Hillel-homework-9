@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ExpenseRepository implements ExpenseRepositoryInterface
 {
-/** @var Expense
+/**
 */
     private $model;
     public function __construct()

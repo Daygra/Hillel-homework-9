@@ -17,9 +17,5 @@ Route::resource('expense','ExpenseController');
 Route::get('/', ['as' => 'index', function () {
     return view('index');
 }]);
-
-Route::get('/{pageNotFount}',function()
-{
-    return view('index');
-});
+Auth::routes();
 
